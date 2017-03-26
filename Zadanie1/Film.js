@@ -1,12 +1,14 @@
-function Film(json) {
+var Film = (function(json) {
 	var self = this;
-	self.tytul = json.tytul;
-	self.rezyser = json.rezyser;
-	self.rok = json.rok;
-	self.gatunek = json.gatunek;
-	self.kraj = json.kraj;
+	function Film(json) {
+		self.tytul = json.tytul;
+		self.rezyser = json.rezyser;
+		self.rok = json.rok;
+		self.gatunek = json.gatunek;
+		self.kraj = json.kraj;
+	}	
 
-	self.toTableRow = function() {
+	Film.prototype.toTableRow = function() {
 		return '<tr><td>'
 		+ self.tytul
 		+ '</td><td>'
@@ -19,7 +21,8 @@ function Film(json) {
 		+ self.kraj
 		+ '</tr></td>';
 	}
-}
+	return Film;
+})();
 
 function ListOfFilmy() {
 	var filmy = [];
