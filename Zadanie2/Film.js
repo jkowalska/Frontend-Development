@@ -17,7 +17,7 @@ class Film {
 	}
 }
 
-class listOfFilmy {
+class ListOfFilmy {
 	constructor(){
 		this.filmy = [];
 		let self = this;
@@ -48,7 +48,7 @@ function init() {
 
 	function reqListener(e) {
    		json = JSON.parse(this.responseText);
-   		listOfFilmy = new listOfFilmy();
+   		listOfFilmy = new ListOfFilmy();
     	for(let i=0; i<json.length; i++) {
         	listOfFilmy.addFilm(json[i]);
         }
