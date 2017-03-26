@@ -40,10 +40,10 @@ class listOfFilmy {
 }
 
 function init() {
-	let oReq = new XMLHttpRequest();
-	oReq.onload = reqListener;
-	oReq.open("get", "./data.json", true);
-	oReq.send();
+	let req = new XMLHttpRequest();
+	req.onload = reqListener;
+	req.open("get", "./data.json", true);
+	req.send();
 	let json;
 
 	function reqListener(e) {
