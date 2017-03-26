@@ -21,7 +21,7 @@ function Film(json) {
 	}
 }
 
-function listOfFilmy() {
+function ListOfFilmy() {
 	var filmy = [];
 	var self = this;
 
@@ -54,7 +54,7 @@ function init() {
 
 	function reqListener(e) {
    		json = JSON.parse(this.responseText);
-   		listOfFilmy = new listOfFilmy();
+   		listOfFilmy = new ListOfFilmy();
     	for(var i=0;json.length>i;i++) {
         	listOfFilmy.addFilm(json[i]);
         }
