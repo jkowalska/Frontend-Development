@@ -1,4 +1,4 @@
-var Film = (function(json) {
+var Film = (function() {
 	var self = this;
 	function Film(json) {
 		self.tytul = json.tytul;
