@@ -1,52 +1,53 @@
 var Film = (function() {
-	var self = this;
 	function Film(json) {
-		self.tytul = json.tytul;
-		self.rezyser = json.rezyser;
-		self.rok = json.rok;
-		self.gatunek = json.gatunek;
-		self.kraj = json.kraj;
+		this.tytul = json.tytul;
+		this.rezyser = json.rezyser;
+		this.rok = json.rok;
+		this.gatunek = json.gatunek;
+		this.kraj = json.kraj;
 	}	
 
 	Film.prototype.toTableRow = function() {
 		return '<tr><td>'
-		+ self.tytul
+		+ this.tytul
 		+ '</td><td>'
-		+ self.rezyser
+		+ this.rezyser
 		+ '</td><td>'
-		+ self.rok
+		+ this.rok
 		+ '</td><td>'
-		+ self.gatunek
+		+ this.gatunek
 		+ '</td><td>'
-		+ self.kraj
-		+ '</tr></td>';
+		+ this.kraj
+		+ '</td></tr>';
 	}
 	return Film;
 })();
 
-function ListOfFilmy() {
-	var filmy = [];
-	var self = this;
-
-	self.addFilm = function(json) {
-		filmy.push(new Film(json));
+var ListOfFilmy = (function () {
+	function ListOfFilmy() {
+        this.filmy = [];
 	}
 
-	self.toTable = function() {
-		var table = '<table>';
-		table += generateTableHeader();
-		for(var i=0; i<filmy.length; i++) {
-			table += filmy[i].toTableRow();
+	ListOfFilmy.prototype.addFilm = function(json) {
+		this.filmy.push(new Film(json));
+	}
+
+	ListOfFilmy.prototype.toTable = function() {
+		var self = this;
+		self.table = '<table>';
+		self.table += this.generateTableHeader();
+		for(var i=0; i<this.filmy.length; i++) {
+			self.table += this.filmy[i].toTableRow();
 		}
-		table += '</table>';
-		console.log(table);
-		return table;
+		self.table += '</table>';
+		return self.table;
 	}
 
-	var generateTableHeader = function() {
+	ListOfFilmy.prototype.generateTableHeader = function() {
 		return '<tr><th>Tytul</th> <th>Rezyser</th> <th>Rok</th> <th>Gatunek</th> <th>Kraj</th></tr>';
-	}
-}
+	}	
+	return ListOfFilmy;
+})();
 
 function init() {
 	var req = new XMLHttpRequest();
@@ -57,7 +58,7 @@ function init() {
 
 	function reqListener(e) {
    		json = JSON.parse(this.responseText);
-   		listOfFilmy = new ListOfFilmy();
+   		var listOfFilmy = new ListOfFilmy();
     	for(var i=0;json.length>i;i++) {
         	listOfFilmy.addFilm(json[i]);
         }
