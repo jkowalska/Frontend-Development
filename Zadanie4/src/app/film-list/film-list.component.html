@@ -1,0 +1,7 @@
+<!--<p>
+  film-list works!
+</p>-->
+<p>Tytuły filmów:</p>
+
+<app-film-details *ngFor="let tytulName of tytuly" [tytul]="tytulName" 
+(clickEmitter)="filmClicked($event)"></app-film-details>
