@@ -3,5 +3,5 @@
 </p>-->
 <p>Tytuły filmów:</p>
 
-<app-film-details *ngFor="let tytulName of tytuly" [tytul]="tytulName" 
+<app-film-details *ngFor="let filmName of tytuly" [tytulFilmu]="filmName" 
 (clickEmitter)="filmClicked($event)"></app-film-details>
