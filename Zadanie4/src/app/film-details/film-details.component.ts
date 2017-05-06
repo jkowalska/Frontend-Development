@@ -22,10 +22,10 @@ import { Film } from '../film/Film';
 export class FilmDetailsComponent implements OnInit {
 
   @Input()
-  tytulFilmu: FilmDetails;
+  tytulFilmu: Film;
 
   @Output()
-  clickEmitter: EventEmitter<Film> = new EventEmitter<Film>();
+  clickEmitter: EventEmitter<Film> = new EventEmitter();
 
   constructor() { }
 
@@ -33,16 +33,8 @@ export class FilmDetailsComponent implements OnInit {
   }
 
   filmSelected(tytulFilmu) {
-    if (tytulFilmu.showDetails) { 
-      tytulFilmu.showDetails = false;
-    } else {
-      tytulFilmu.showDetails = true;
-    }
+    tytulFilmu.showDetails = !tytulFilmu.showDetails; 
     console.log(`Film: ${this.tytulFilmu.tytul} selected`);
     this.clickEmitter.emit(this.tytulFilmu);
   }
-}
-
-export class FilmDetails extends Film {
-  showDetails = !this.showDetails;  
 }
