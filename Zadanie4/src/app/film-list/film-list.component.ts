@@ -23,19 +23,19 @@ export class FilmListComponent implements OnInit {
     this.tytuly = [];
     this.tytuly.push({ tytul: "Lot nad kukułczym gniazdem", 
                         rezyser: "Miloš Forman",
-                        rok: "1975",
+                        rok: 1975,
                         gatunek: "dramat psychologiczny",
                         kraj: "USA"                      
                     });
     this.tytuly.push({ tytul: "Złap mnie, jeśli potrafisz", 
                         rezyser: "Steven Spielberg",
-                        rok: "2002",
+                        rok: 2002,
                         gatunek: "komedia kryminalna",
                         kraj: "Kanada, USA"                      
                     });
     this.tytuly.push({ tytul: "Lśnienie", 
                         rezyser: "Stanley Kubrick",
-                        rok: "1980",
+                        rok: 1980,
                         gatunek: "horror",
                         kraj: "USA, Wielka Brytania"                      
                     });
