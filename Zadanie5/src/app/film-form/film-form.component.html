@@ -1,0 +1,38 @@
+<!--<p>
+  film-form works!
+</p>-->
+
+<form [formGroup]="myForm" (ngSubmit)="mySubmit(myForm.value)">
+  <label>Tytuł: <input type="text" [formControl]="myForm.controls['tytul']">
+  <div *ngIf="tytul.hasError('minlength')">Tytuł too short</div>
+  <div *ngIf="tytul.hasError('maxlength')">Tytuł too long</div>
+  <div *ngIf="tytul.hasError('required')">Tytuł required</div></label>
+  <br>
+  <label>Reżyser:<input type="text" [formControl]="myForm.controls['rezyser']">
+  <div *ngIf="rezyser.hasError('minlength')">Name too short</div>
+  <div *ngIf="rezyser.hasError('maxlength')">Name too long</div>
+  <div *ngIf="rezyser.hasError('required')">Name required</div></label>
+  <br>
+  <label>Rok:<input type="text" [formControl]="myForm.controls['rok']">
+  <div *ngIf="rok.hasError('minlength')">Rok too short</div>
+  <div *ngIf="rok.hasError('maxlength')">Rok too long</div>
+  <div *ngIf="rok.hasError('required')">Rok required</div></label>
+  <br>
+  <label>Gatunek:<input type="text" [formControl]="myForm.controls['gatunek']">
+  <div *ngIf="gatunek.hasError('minlength')">Gatunek too short</div>
+  <div *ngIf="gatunek.hasError('maxlength')">Gatunek too long</div>
+  <div *ngIf="gatunek.hasError('required')">Gatunek required</div></label>
+  <br>
+  <label>Kraj:<input type="text" [formControl]="myForm.controls['kraj']">
+  <div *ngIf="kraj.hasError('minlength')">Kraj too short</div>
+  <div *ngIf="kraj.hasError('maxlength')">Kraj too long</div>
+  <div *ngIf="kraj.hasError('required')">Kraj required</div></label>
+  <br>
+  <button type="submit"> OK </button>
+</form>
+
+<div>
+   <h3><em>Informacje na temat filmów:</em></h3>
+   <app-film-details *ngFor="let filmName of tytuly" [tytulFilmu]="filmName" 
+   (clickEmitter)="filmClicked($event)"></app-film-details>
+</div> 

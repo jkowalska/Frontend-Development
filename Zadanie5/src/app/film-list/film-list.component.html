@@ -1,0 +1,15 @@
+<!--<p>
+  film-list works!
+</p>-->
+<p>Tytuły filmów:</p>
+
+<!--<app-film-details *ngFor="let filmName of tytuly" [tytulFilmu]="filmName" 
+(clickEmitter)="filmClicked($event)"></app-film-details>-->
+
+<div>
+   <h3><em>Informacje na temat filmów:</em></h3>
+   <app-film-details *ngFor="let filmName of tytuly" [tytulFilmu]="filmName" 
+   (clickEmitter)="filmClicked($event)"></app-film-details>
+</div> 
+
+<app-film-form></app-film-form>   

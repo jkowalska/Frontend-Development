@@ -1,0 +1,10 @@
+<!--<p>
+  film-search works!
+</p>
+-->
+
+<input type="search" [formControl]="searchField">
+
+<ul>
+  <li *ngFor="let searchFilm of searches"> {{ searchFilm }} </li>
+</ul>
