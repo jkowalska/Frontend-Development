@@ -51,8 +51,6 @@ export class FilmFormComponent implements OnInit {
       'rok': ['', Validators.compose(
         [Validators.required, Validators.minLength(4), Validators.maxLength(4),this.myYearValidator]
         )],
-        /*[Validators.required, Validators.minLength(4), Validators.maxLength(4)]
-        )],*/
       'gatunek': ['', Validators.compose(
         [Validators.required, Validators.minLength(3), Validators.maxLength(30)]
         )],
