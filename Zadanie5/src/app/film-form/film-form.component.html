@@ -2,33 +2,40 @@
   film-form works!
 </p>-->
 
+<label>Wyszukaj film: <input type="search" [formControl]="searchField"></label>
+
+<ul>
+  <li *ngFor="let searchFilm of searches"> {{ searchFilm }} </li>
+</ul>
+
 <form [formGroup]="myForm" (ngSubmit)="mySubmit(myForm.value)">
-  <label>Tytuł: <input type="text" [formControl]="myForm.controls['tytul']">
-  <div *ngIf="tytul.hasError('minlength')">Tytuł too short</div>
-  <div *ngIf="tytul.hasError('maxlength')">Tytuł too long</div>
-  <div *ngIf="tytul.hasError('required')">Tytuł required</div></label>
+  <label>Tytuł:</label><input type="text" name="tytul" ng-required="true" [formControl]="myForm.controls['tytul']">
+  <div *ngIf="tytul.hasError('minlength')">Zbyt krótki tytuł</div>
+  <div *ngIf="tytul.hasError('maxlength')">Zbyt długi tytuł</div>
+  <div *ngIf="tytul.hasError('required')">Wpisz tytuł</div>
   <br>
-  <label>Reżyser:<input type="text" [formControl]="myForm.controls['rezyser']">
-  <div *ngIf="rezyser.hasError('minlength')">Name too short</div>
-  <div *ngIf="rezyser.hasError('maxlength')">Name too long</div>
-  <div *ngIf="rezyser.hasError('required')">Name required</div></label>
+  <label>Reżyser:</label><input type="text" ng-required="true" [formControl]="myForm.controls['rezyser']">
+  <div *ngIf="rezyser.hasError('minlength')">Zbyt krótkie nazwisko reżysera</div>
+  <div *ngIf="rezyser.hasError('maxlength')">Zbyt długie nazwisko reżysera</div>
+  <div *ngIf="rezyser.hasError('required')">Wpisz nazwisko reżysera</div>
   <br>
-  <label>Rok:<input type="text" [formControl]="myForm.controls['rok']">
-  <div *ngIf="rok.hasError('minlength')">Rok too short</div>
-  <div *ngIf="rok.hasError('maxlength')">Rok too long</div>
-  <div *ngIf="rok.hasError('required')">Rok required</div></label>
+  <label>Rok:</label><input type="text" ng-required="true" [formControl]="myForm.controls['rok']">
+  <div *ngIf="rok.hasError('minlength')">Wpisz rok w formacie 4-cyfrowym 19-- lub 20--</div>
+  <div *ngIf="rok.hasError('maxlength')">Wpisz rok w formacie 4-cyfrowym 19-- lub 20--</div>
+  <div *ngIf="rok.hasError('rokValue')">Wpisz rok numerycznie w formacie 19-- lub 20--</div>
+  <!--d-->
   <br>
-  <label>Gatunek:<input type="text" [formControl]="myForm.controls['gatunek']">
-  <div *ngIf="gatunek.hasError('minlength')">Gatunek too short</div>
-  <div *ngIf="gatunek.hasError('maxlength')">Gatunek too long</div>
-  <div *ngIf="gatunek.hasError('required')">Gatunek required</div></label>
+  <label>Gatunek:</label><input type="text" ng-required="true" [formControl]="myForm.controls['gatunek']">
+  <div *ngIf="gatunek.hasError('minlength')">Zbyt krótka nazwa gatunku</div>
+  <div *ngIf="gatunek.hasError('maxlength')">Zbyt długa nazwa gatunku</div>
+  <div *ngIf="gatunek.hasError('required')">Wpisz gatunek</div>
   <br>
-  <label>Kraj:<input type="text" [formControl]="myForm.controls['kraj']">
-  <div *ngIf="kraj.hasError('minlength')">Kraj too short</div>
-  <div *ngIf="kraj.hasError('maxlength')">Kraj too long</div>
-  <div *ngIf="kraj.hasError('required')">Kraj required</div></label>
+  <label>Kraj:</label><input type="text" ng-required="true" [formControl]="myForm.controls['kraj']">
+  <div *ngIf="kraj.hasError('minlength')">Zbyt krótka nazwa kraju</div>
+  <div *ngIf="kraj.hasError('maxlength')">Zbyt długa nazwa kraju</div>
+  <div *ngIf="kraj.hasError('required')">Wpisz nazwę kraju</div>
   <br>
-  <button type="submit"> OK </button>
+  <button type="submit" [disabled]="!myForm.valid"> Dodaj </button>
 </form>
 
 <div>

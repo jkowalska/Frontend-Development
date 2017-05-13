@@ -49,13 +49,15 @@ export class FilmFormComponent implements OnInit {
         [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
         )],
       'rok': ['', Validators.compose(
-        [Validators.required, Validators.minLength(4), Validators.maxLength(4)]
+        [Validators.required, Validators.minLength(4), Validators.maxLength(4),this.myYearValidator]
         )],
+        /*[Validators.required, Validators.minLength(4), Validators.maxLength(4)]
+        )],*/
       'gatunek': ['', Validators.compose(
         [Validators.required, Validators.minLength(3), Validators.maxLength(30)]
         )],
       'kraj': ['', Validators.compose(
-        [Validators.required, Validators.minLength(3), Validators.maxLength(30)]
+        [Validators.required, Validators.minLength(2), Validators.maxLength(30)]
         )]      
     } );
     this.tytul = this.myForm.controls['tytul'];
@@ -74,6 +76,14 @@ export class FilmFormComponent implements OnInit {
                       rok : value.rok, 
                       gatunek : value.gatunek, 
                       kraj : value.kraj })
+  }
+
+  myYearValidator(control: FormControl) {
+    if (!control.value.match(/^[0-9]/)) {
+      return {
+        'rokValue': true
+      };
+    }
   }
 
   ngOnInit() {
