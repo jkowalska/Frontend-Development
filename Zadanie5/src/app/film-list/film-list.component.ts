@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, AbstractControl, Validators, FormControl } from '@angular/forms';
 import { Film } from '../film/Film';
 
 @Component({
@@ -9,11 +10,27 @@ import { Film } from '../film/Film';
 
 export class FilmListComponent implements OnInit {
 
+  @Input()
+  tytulFilmu: Film;
+
+  @Output()
+  clickEmitter: EventEmitter<Film> = new EventEmitter();
+  
   film: Film;
   tytuly: Array<any>;
 
-  constructor() { 
-    /*let film = new Film();
+  myForm: FormGroup;
+  tytul: AbstractControl;
+  rezyser: AbstractControl; 
+  rok: AbstractControl;
+  gatunek: AbstractControl;
+  kraj: AbstractControl;
+
+  searchField: FormControl;
+  searches: Film[] = [];
+  
+  constructor(fb: FormBuilder) { 
+    let film = new Film();
     this.tytuly = [];
     this.tytuly.push({ tytul: "Lot nad kukułczym gniazdem", 
                         rezyser: "Miloš Forman",
@@ -32,10 +49,55 @@ export class FilmListComponent implements OnInit {
                         rok: 1980,
                         gatunek: "horror",
                         kraj: "USA, Wielka Brytania"                      
-                    });*/
+                    });
+
+    this.myForm = fb.group( { 
+      'tytul': ['', Validators.compose(
+        [Validators.required, Validators.minLength(1), Validators.maxLength(50)]
+        )],
+      'rezyser': ['', Validators.compose(
+        [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
+        )],
+      'rok': ['', Validators.compose(
+        [Validators.required, Validators.minLength(4), Validators.maxLength(4), this.myYearValidator]
+        )],
+      'gatunek': ['', Validators.compose(
+        [Validators.required, Validators.minLength(3), Validators.maxLength(30)]
+        )],
+      'kraj': ['', Validators.compose(
+        [Validators.required, Validators.minLength(2), Validators.maxLength(30)]
+        )]      
+    } );
+    this.tytul = this.myForm.controls['tytul'];
+    this.rezyser = this.myForm.controls['rezyser'];
+    this.rok = this.myForm.controls['rok'];
+    this.gatunek = this.myForm.controls['gatunek'];
+    this.kraj = this.myForm.controls['kraj'];     
+    this.searchField = new FormControl();
+  }
+  
+  ngOnInit() {
   }
 
-  ngOnInit() {
+  search(value: any){
+      let searchedFilm = this.tytuly.filter(film => film.tytul.match(this.searchField.value));
+      searchedFilm.forEach(film => { this.searches.push(film); });
+  }     
+
+  mySubmit(value: any) {
+    this.tytuly.push({tytul : value.tytul, 
+                      rezyser : value.rezyser,
+                      rok : value.rok, 
+                      gatunek : value.gatunek, 
+                      kraj : value.kraj })
+  }
+
+  myYearValidator(control: FormControl) {
+    if (!control.value.match(/^[0-9]/)) {
+      return {
+        'rokValue': true
+      };
+    }
   }
   
   filmClicked(filmName: Film) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl, Validators, FormControl } from '@angular/forms';
 import { Film } from '../film/Film';
 
@@ -9,10 +9,16 @@ import { Film } from '../film/Film';
 })
 export class FilmFormComponent implements OnInit {
 
-  myForm: FormGroup;
+  @Input()
+  tytulFilmu: Film;
+
+  @Output()
+  clickEmitter: EventEmitter<Film> = new EventEmitter();
+
   film: Film;
   tytuly: Array<any>;
 
+  myForm: FormGroup;
   tytul: AbstractControl;
   rezyser: AbstractControl; 
   rok: AbstractControl;
@@ -62,13 +68,14 @@ export class FilmFormComponent implements OnInit {
     this.rezyser = this.myForm.controls['rezyser'];
     this.rok = this.myForm.controls['rok'];
     this.gatunek = this.myForm.controls['gatunek'];
-    this.kraj = this.myForm.controls['kraj'];
-
-    this.tytul.valueChanges.subscribe(); 
+    this.kraj = this.myForm.controls['kraj'];    
   }
 
+  filmClicked(filmName: Film) {
+    console.log(`From Parent ${filmName.tytul}`);
+  }
+  
   mySubmit(value: any) {
-    //console.log(value.tytul);
     this.tytuly.push({tytul : value.tytul, 
                       rezyser : value.rezyser,
                       rok : value.rok, 

@@ -1,10 +1,9 @@
-<!--<p>
-  film-search works!
-</p>
--->
-
-<input type="search" [formControl]="searchField">
-
-<ul>
-  <li *ngFor="let searchFilm of searches"> {{ searchFilm }} </li>
-</ul>
+<h3><em>Wyszukaj film:</em></h3>
+<form [formGroup]="myForm" (ngSubmit)="search(myForm.value)">
+    <input type="search" [formControl]="searchField">   
+    <button type="submit"> Wyszukaj </button>
+</form>
+<div><br>
+    <app-film-details *ngFor= "let filmName of searches" 
+    [tytulFilmu]="filmName" (clickEmitter)="filmClicked($event)"></app-film-details>
+</div>

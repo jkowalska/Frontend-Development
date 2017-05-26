@@ -1,36 +1,27 @@
-<!--<p>
-  film-form works!
-</p>-->
-
-<label>Wyszukaj film: <input type="search" [formControl]="searchField"></label>
-
-<ul>
-  <li *ngFor="let searchFilm of searches"> {{ searchFilm }} </li>
-</ul>
-
+<h3><em>Dodaj film:</em></h3>
 <form [formGroup]="myForm" (ngSubmit)="mySubmit(myForm.value)">
-  <label>Tytuł:</label><input type="text" name="tytul" ng-required="true" [formControl]="myForm.controls['tytul']">
+  <label>Tytuł: </label><input type="text" name="tytul" ng-required="true" [formControl]="myForm.controls['tytul']">
   <div *ngIf="tytul.hasError('minlength')">Zbyt krótki tytuł</div>
   <div *ngIf="tytul.hasError('maxlength')">Zbyt długi tytuł</div>
   <div *ngIf="tytul.hasError('required')">Wpisz tytuł</div>
   <br>
-  <label>Reżyser:</label><input type="text" ng-required="true" [formControl]="myForm.controls['rezyser']">
+  <label>Reżyser: </label><input type="text" ng-required="true" [formControl]="myForm.controls['rezyser']">
   <div *ngIf="rezyser.hasError('minlength')">Zbyt krótkie nazwisko reżysera</div>
   <div *ngIf="rezyser.hasError('maxlength')">Zbyt długie nazwisko reżysera</div>
   <div *ngIf="rezyser.hasError('required')">Wpisz nazwisko reżysera</div>
   <br>
-  <label>Rok:</label><input type="text" ng-required="true" [formControl]="myForm.controls['rok']">
+  <label>Rok: </label><input type="text" ng-required="true" [formControl]="myForm.controls['rok']">
   <div *ngIf="rok.hasError('minlength')">Wpisz rok w formacie 4-cyfrowym 19-- lub 20--</div>
   <div *ngIf="rok.hasError('maxlength')">Wpisz rok w formacie 4-cyfrowym 19-- lub 20--</div>
   <div *ngIf="rok.hasError('rokValue')">Wpisz rok numerycznie w formacie 19-- lub 20--</div>
-  <!--d-->
+  <div *ngIf="rok.hasError('required')">Wpisz rok</div>
   <br>
-  <label>Gatunek:</label><input type="text" ng-required="true" [formControl]="myForm.controls['gatunek']">
+  <label>Gatunek: </label><input type="text" ng-required="true" [formControl]="myForm.controls['gatunek']">
   <div *ngIf="gatunek.hasError('minlength')">Zbyt krótka nazwa gatunku</div>
   <div *ngIf="gatunek.hasError('maxlength')">Zbyt długa nazwa gatunku</div>
   <div *ngIf="gatunek.hasError('required')">Wpisz gatunek</div>
   <br>
-  <label>Kraj:</label><input type="text" ng-required="true" [formControl]="myForm.controls['kraj']">
+  <label>Kraj: </label><input type="text" ng-required="true" [formControl]="myForm.controls['kraj']">
   <div *ngIf="kraj.hasError('minlength')">Zbyt krótka nazwa kraju</div>
   <div *ngIf="kraj.hasError('maxlength')">Zbyt długa nazwa kraju</div>
   <div *ngIf="kraj.hasError('required')">Wpisz nazwę kraju</div>
@@ -38,8 +29,6 @@
   <button type="submit" [disabled]="!myForm.valid"> Dodaj </button>
 </form>
 
-<div>
-   <h3><em>Informacje na temat filmów:</em></h3>
-   <app-film-details *ngFor="let filmName of tytuly" [tytulFilmu]="filmName" 
-   (clickEmitter)="filmClicked($event)"></app-film-details>
-</div> 
+<h3><em>Informacje na temat filmów:</em></h3>
+<app-film-details *ngFor="let filmName of tytuly" [tytulFilmu]="filmName" 
+(clickEmitter)="filmClicked($event)"></app-film-details>
