@@ -13,4 +13,4 @@ Angular components <br />
 Zadanie 4: film-list i film-details <br /> 
 Zadanie 5: film-form i film-search <br />
 
-Zadanie 5: services
+Zadanie 6: services
