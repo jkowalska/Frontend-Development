@@ -1,0 +1,35 @@
+<h3><em>Film do edycji:</em></h3>
+<form [formGroup]="myForm3" (ngSubmit)="filmEdit(myForm3.value)">
+  <label>Stary tytuł: </label><input type="text" ng-required="true" [formControl]="myForm3.controls['tytul']">
+  <div *ngIf="tytul.hasError('minlength')">Zbyt krótki tytuł</div>
+  <div *ngIf="tytul.hasError('maxlength')">Zbyt długi tytuł</div>
+  <div *ngIf="tytul.hasError('required')">Wpisz tytuł</div>
+  <br>
+  <label>Nowy tytuł: </label><input type="text" ng-required="true" [formControl]="myForm3.controls['ntytul']">
+  <div *ngIf="ntytul.hasError('minlength')">Zbyt krótki tytuł</div>
+  <div *ngIf="ntytul.hasError('maxlength')">Zbyt długi tytuł</div>
+  <div *ngIf="ntytul.hasError('required')">Wpisz tytuł</div>
+  <br>
+  <label>Nowy reżyser: </label><input type="text" ng-required="true" [formControl]="myForm3.controls['nrezyser']">
+  <div *ngIf="nrezyser.hasError('minlength')">Zbyt krótkie nazwisko reżysera</div>
+  <div *ngIf="nrezyser.hasError('maxlength')">Zbyt długie nazwisko reżysera</div>
+  <div *ngIf="nrezyser.hasError('required')">Wpisz nazwisko reżysera</div>
+  <br>
+  <label>Nowy rok: </label><input type="text" ng-required="true" [formControl]="myForm3.controls['nrok']">
+  <div *ngIf="nrok.hasError('minlength')">Wpisz rok w formacie 4-cyfrowym 19-- lub 20--</div>
+  <div *ngIf="nrok.hasError('maxlength')">Wpisz rok w formacie 4-cyfrowym 19-- lub 20--</div>
+  <div *ngIf="nrok.hasError('rokValue')">Wpisz rok numerycznie</div>
+  <div *ngIf="nrok.hasError('required')"></div>
+  <br>
+  <label>Nowy gatunek: </label><input type="text" ng-required="true" [formControl]="myForm3.controls['ngatunek']">
+  <div *ngIf="ngatunek.hasError('minlength')">Zbyt krótka nazwa gatunku</div>
+  <div *ngIf="ngatunek.hasError('maxlength')">Zbyt długa nazwa gatunku</div>
+  <div *ngIf="ngatunek.hasError('required')">Wpisz gatunek</div>
+  <br>
+  <label>Nowy kraj: </label><input type="text" ng-required="true" [formControl]="myForm3.controls['nkraj']">
+  <div *ngIf="nkraj.hasError('minlength')">Zbyt krótka nazwa kraju</div>
+  <div *ngIf="nkraj.hasError('maxlength')">Zbyt długa nazwa kraju</div>
+  <div *ngIf="nkraj.hasError('required')">Wpisz nazwę kraju</div>
+  <br>
+  <button type="submit" [disabled]="!myForm3.valid"> Edytuj </button>
+</form>

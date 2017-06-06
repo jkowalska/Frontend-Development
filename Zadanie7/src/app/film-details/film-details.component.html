@@ -1,0 +1,11 @@
+<div (click)="filmSelected(tytulFilmu)">
+    <a><font size="5"><label><strong>tytuł: </strong></label>{{tytulFilmu.tytul}}</font></a>
+    <div  *ngIf="tytulFilmu.showDetails">
+         <hr>
+         <div><label><strong>reżyser: </strong></label>{{tytulFilmu.rezyser}}</div>
+         <div><label><strong>rok: </strong></label>{{tytulFilmu.rok}}</div>
+         <div><label><strong>gatunek: </strong></label>{{tytulFilmu.gatunek}}</div>
+         <div><label><strong>kraj: </strong></label>{{tytulFilmu.kraj}}</div>
+         <hr>
+    </div>
+</div>

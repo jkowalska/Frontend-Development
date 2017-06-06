@@ -1,0 +1,4 @@
+<hr><h3><em>Informacje na temat filmów:</em></h3>
+<div *ngFor= "let filmName of tytuly">
+<app-film-details [tytulFilmu]="filmName"(clickEmitter)="filmClicked($event)"></app-film-details>
+<button (click)="filmDelete(filmName)"> Usuń </button>

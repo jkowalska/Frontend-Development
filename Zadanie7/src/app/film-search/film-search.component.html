@@ -1,0 +1,9 @@
+<h3><em>Wyszukaj film:</em></h3>
+<form [formGroup]="myForm2" (ngSubmit)="filmSearch(myForm2.value)">
+    <input type="search" [formControl]="searchField">   
+    <button type="submit"> Wyszukaj </button>
+</form>
+<div><br>
+    <app-film-details *ngFor= "let filmName of searches" 
+    [tytulFilmu]="filmName" ></app-film-details>
+</div><hr>
